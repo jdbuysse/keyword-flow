@@ -2,29 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Selector.css"; // Import CSS file for component styling
 import SelectedKeyphrases from "../SelectedKeyphrases/SelectedKeyphrases";
 
-const Selector = () => {
-  const [topKeyphrases, setTopKeyphrases] = useState([]);
-
+const Selector = ({ topKeyphrases }) => {
   const [selectedKeyphrase1, setSelectedKeyphrase1] = useState("");
   const [selectedKeyphrase2, setSelectedKeyphrase2] = useState("");
   const [selectedKeyphrases, setSelectedKeyphrases] = useState([]);
-
-  useEffect(() => {
-    // Fetch the output JSON file containing the top 10 keyphrases
-    fetch("/output.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const { keyphrasesTFIDF } = data;
-        const top10 = keyphrasesTFIDF
-          .slice(0, 10)
-          .map((item) => item.keyphrase);
-        setTopKeyphrases(top10);
-        // const allKeyphrases = keyphrasesTFIDF.map((item) => item.keyphrase);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []); // Empty dependency array to fetch data only once
 
   const handleSelectChange1 = (event) => {
     setSelectedKeyphrase1(event.target.value);
