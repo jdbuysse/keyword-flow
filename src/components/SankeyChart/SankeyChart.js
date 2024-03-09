@@ -1,11 +1,73 @@
 import React from "react";
 import { ResponsiveSankey } from "@nivo/sankey";
 
-const SankeyDiagram = ({ data }) => {
+const SankeyChart = ({ extractedData }) => {
+  const source = "skaters";
+  const target = "skateboard";
+  const third = "kickflip";
+
+  const occurrences = {
+    [`${source}_${target}`]: 0,
+    [`${source}_${third}`]: 0,
+    [`${source}_${target}_${third}`]: 0,
+  };
+
+  extractedData.forEach((entry) => {
+    const keyphrases = entry.keyphrase.split(" ");
+
+    // Check if "skaters" and "skateboard" coexist but "kickflip" does not
+    if (
+      keyphrases.includes(source) &&
+      keyphrases.includes(target) &&
+      !keyphrases.includes(third)
+    ) {
+      occurrences[`${source}_${target}`]++;
+    }
+
+    // Check if "skaters" and "kickflip" coexist but "skateboard" does not
+    if (
+      keyphrases.includes(source) &&
+      keyphrases.includes(third) &&
+      !keyphrases.includes(target)
+    ) {
+      occurrences[`${source}_${third}`]++;
+    }
+
+    // Check if all three words coexist
+    if (
+      keyphrases.includes(source) &&
+      keyphrases.includes(target) &&
+      keyphrases.includes(third)
+    ) {
+      occurrences[`${source}_${target}_${third}`]++;
+    }
+  });
+
+  const sData = {
+    nodes: [{ id: source }, { id: target }, { id: third }],
+    links: [
+      {
+        source: source,
+        target: target,
+        value: occurrences[`${source}_${target}`],
+      },
+      {
+        source: source,
+        target: third,
+        value: occurrences[`${source}_${third}`],
+      },
+      {
+        source: target,
+        target: third,
+        value: occurrences[`${source}_${target}_${third}`],
+      },
+    ],
+  };
+
   return (
     <div style={{ height: "500px" }}>
       <ResponsiveSankey
-        data={data}
+        data={sData}
         margin={{ top: 40, right: 160, bottom: 40, left: 50 }}
         align="justify"
         colors={{ scheme: "category10" }}
@@ -51,4 +113,4 @@ const SankeyDiagram = ({ data }) => {
   );
 };
 
-export default SankeyDiagram;
+export default SankeyChart;
