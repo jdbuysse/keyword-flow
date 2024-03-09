@@ -1,6 +1,6 @@
 .selected-keyphrases-container {
     margin-left: 20px;
-    background-color: #3c6382;
+    background-color: #e5e5e5e7;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -13,7 +13,7 @@
   
   .selected-keyphrases-container h3 {
     margin-top: 0;
-    color: #9b59b6;
+    color: #151116;
   }
   
   .selected-keyphrases-container ul {
@@ -25,14 +25,14 @@
   }
   
   .selected-keyphrases-container li {
-    background-color: #e0fbfc;
+    background-color: #f3f8f8;
     border-radius: 20px;
     padding: 8px 16px;
     margin-right: 10px;
     margin-bottom: 10px;
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #3c6382;
+    color: #06090c;
   }
 
   .selector-wrapper select {
@@ -42,9 +42,9 @@
     border-radius: 25px;
     font-size: 16px;
     background-color: #f8f8f8;
-    color: #3c6382;
+    color: #030404;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    background: linear-gradient(to right, #e5e5e5e7,#d5d5d5e7);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }

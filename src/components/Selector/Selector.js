@@ -37,7 +37,7 @@ const Selector = ({
         <div className="selector-wrapper">
           {localSelectedKeyphrases.map((_, index) => (
             <React.Fragment key={index}>
-              <h3>Selector {index + 1}:</h3>
+              <h3>Term {index + 1}:</h3>
               <select
                 value={localSelectedKeyphrases[index]}
                 onChange={(event) => handleSelectChange(index, event)}

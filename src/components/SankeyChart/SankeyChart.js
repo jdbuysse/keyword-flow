@@ -85,6 +85,10 @@ const SankeyChart = ({ extractedData, selectedKeyphrases }) => {
     : [];
   return (
     <div>
+      <h3>
+        Click on one of the linkages in the Sankey chart below to reveal
+        document co-occurrences
+      </h3>
       <div style={{ height: "500px" }}>
         <ResponsiveSankey
           data={sData}
