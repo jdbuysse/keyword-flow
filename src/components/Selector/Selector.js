@@ -1,25 +1,46 @@
 import React, { useState, useEffect } from "react";
-import "./Selector.css"; // Import CSS file for component styling
+import "./Selector.css";
 import SelectedKeyphrases from "../SelectedKeyphrases/SelectedKeyphrases";
 
-const Selector = ({ topKeyphrases }) => {
+const Selector = ({
+  topKeyphrases,
+  selectedKeyphrases,
+  setSelectedKeyphrases,
+}) => {
   const [selectedKeyphrase1, setSelectedKeyphrase1] = useState("");
   const [selectedKeyphrase2, setSelectedKeyphrase2] = useState("");
-  const [selectedKeyphrases, setSelectedKeyphrases] = useState([]);
+  const [selectedKeyphrase3, setSelectedKeyphrase3] = useState("");
 
   const handleSelectChange1 = (event) => {
     setSelectedKeyphrase1(event.target.value);
-    // Reset the selection in selector 2 if the same keyphrase is selected in selector 1
-    if (event.target.value === selectedKeyphrase2) {
+    if (
+      event.target.value === selectedKeyphrase2 ||
+      event.target.value === selectedKeyphrase3
+    ) {
       setSelectedKeyphrase2("");
+      setSelectedKeyphrase3("");
     }
   };
 
   const handleSelectChange2 = (event) => {
     setSelectedKeyphrase2(event.target.value);
-    // Reset the selection in selector 1 if the same keyphrase is selected in selector 2
-    if (event.target.value === selectedKeyphrase1) {
+    if (
+      event.target.value === selectedKeyphrase1 ||
+      event.target.value === selectedKeyphrase3
+    ) {
       setSelectedKeyphrase1("");
+      setSelectedKeyphrase3("");
+    }
+  };
+
+  const handleSelectChange3 = (event) => {
+    setSelectedKeyphrase3(event.target.value);
+    if (
+      event.target.value === selectedKeyphrase1 ||
+      event.target.value === selectedKeyphrase2
+    ) {
+      setSelectedKeyphrase1("");
+      setSelectedKeyphrase2("");
     }
   };
 
@@ -31,8 +52,16 @@ const Selector = ({ topKeyphrases }) => {
     if (selectedKeyphrase2) {
       updatedSelectedKeyphrases.push(selectedKeyphrase2);
     }
+    if (selectedKeyphrase3) {
+      updatedSelectedKeyphrases.push(selectedKeyphrase3);
+    }
     setSelectedKeyphrases(updatedSelectedKeyphrases);
-  }, [selectedKeyphrase1, selectedKeyphrase2]);
+  }, [
+    selectedKeyphrase1,
+    selectedKeyphrase2,
+    selectedKeyphrase3,
+    setSelectedKeyphrases,
+  ]);
 
   return (
     <div className="selector-container">
@@ -47,9 +76,6 @@ const Selector = ({ topKeyphrases }) => {
               </option>
             ))}
           </select>
-        </div>
-
-        <div className="selector-wrapper">
           <h3>Selector 2:</h3>
           <select value={selectedKeyphrase2} onChange={handleSelectChange2}>
             <option value="">Select...</option>
@@ -59,8 +85,16 @@ const Selector = ({ topKeyphrases }) => {
               </option>
             ))}
           </select>
+          <h3>Selector 3:</h3>
+          <select value={selectedKeyphrase3} onChange={handleSelectChange3}>
+            <option value="">Select...</option>
+            {topKeyphrases.map((keyphrase, index) => (
+              <option key={index} value={keyphrase}>
+                {keyphrase}
+              </option>
+            ))}
+          </select>
         </div>
-
         <SelectedKeyphrases selectedKeyphrases={selectedKeyphrases} />
       </div>
     </div>
