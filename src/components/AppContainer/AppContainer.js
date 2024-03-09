@@ -39,12 +39,17 @@ function AppContainer() {
           />
           <WordCloud allKeyphrases={allKeyphrases} />
         </div>
-        {extractedData.length > 0 && (
-          <SankeyChart
-            extractedData={extractedData}
-            selectedKeyphrases={selectedKeyphrases}
-          />
-        )}
+        {extractedData.length > 0 &&
+          (selectedKeyphrases.length === 3 ? (
+            <SankeyChart
+              extractedData={extractedData}
+              selectedKeyphrases={selectedKeyphrases}
+            />
+          ) : (
+            <div className="sankey-placeholder">
+              Select three keyphrases to display Sankey chart
+            </div>
+          ))}
       </header>
     </div>
   );
