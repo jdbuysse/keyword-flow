@@ -1,0 +1,6 @@
+.wordcloud-container {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    box-sizing: border-box;
+  }

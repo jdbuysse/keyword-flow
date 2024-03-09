@@ -1,11 +1,12 @@
+
 .selector-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 20px;
-    font-family: Garamond, serif;
-  }
-  
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
   .selectors-column {
     background-color: #3c6382;
     border-radius: 10px;

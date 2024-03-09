@@ -24,7 +24,7 @@ const WordCloud = ({ allKeyphrases }) => {
 
   return (
     <div className="wordcloud-container">
-      <h3>All Keyphrases Word Cloud</h3>
+      <h3></h3>
       <Wordcloud
         words={wordcloudData}
         options={{
