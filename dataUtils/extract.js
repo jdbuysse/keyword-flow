@@ -3,7 +3,7 @@ const natural = require("natural");
 
 // Input and output file paths
 // EDIT FILENAME to read in new dataset
-const inputFile = "./constellateDatasets/skate_full_metadata.jsonl";
+const inputFile = "./constellateDatasets/machine_learning.jsonl";
 const outputFile = "../public/output.json";
 
 // Read JSONL by line

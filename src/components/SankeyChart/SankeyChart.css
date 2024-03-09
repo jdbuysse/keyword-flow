@@ -1,36 +1,15 @@
-.link-info {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-  }
-  
-  .link-info h4 {
-    margin-top: 0;
-  }
-  
-  .link-info p {
-    margin-bottom: 5px;
-  }
-  
-  .link-source,
-  .link-target,
-  .link-value {
-    font-weight: bold;
-  }
-  
-  .related-texts-container {
-    display: flex;
-    flex-wrap: wrap;
+.related-texts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
   
   .related-text-item {
-    flex: 1 0 300px;
     padding: 10px;
     background-color: #ffffff;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
   }
   
   .entry-header {
@@ -42,17 +21,22 @@
   
   .entry-title {
     font-weight: bold;
+    flex: 1;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .entry-date {
     font-style: italic;
     color: #999;
+    white-space: nowrap;
   }
   
   .entry-keyphrase {
     margin-top: 10px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
-    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
