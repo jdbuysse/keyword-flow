@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import "./SankeyChart.css";
 import { ResponsiveSankey } from "@nivo/sankey";
 
 const formatSankeyChartData = (extractedData, selectedKeyphrases) => {
@@ -67,12 +68,27 @@ const formatSankeyChartData = (extractedData, selectedKeyphrases) => {
 
 const SankeyChart = ({ extractedData, selectedKeyphrases }) => {
   const sData = formatSankeyChartData(extractedData, selectedKeyphrases);
+  const [clickedLink, setClickedLink] = useState(null);
 
+  const handleLinkClick = (link) => {
+    setClickedLink(link);
+  };
+
+  const filteredData = clickedLink
+    ? extractedData.filter((entry) => {
+        const keyphrases = entry.keyphrase.split(" ");
+        return (
+          keyphrases.includes(clickedLink.source.id) &&
+          keyphrases.includes(clickedLink.target.id)
+        );
+      })
+    : [];
   return (
-    <div style={{ height: "500px" }}>
-      {
+    <div>
+      <div style={{ height: "500px" }}>
         <ResponsiveSankey
           data={sData}
+          onClick={handleLinkClick}
           margin={{ top: 40, right: 160, bottom: 40, left: 50 }}
           align="justify"
           colors={{ scheme: "category10" }}
@@ -114,7 +130,34 @@ const SankeyChart = ({ extractedData, selectedKeyphrases }) => {
             },
           ]}
         />
-      }
+      </div>
+      {clickedLink && (
+        <div className="link-info">
+          <h4>Link Information</h4>
+          <p>
+            Source: <span className="link-source">{clickedLink.source.id}</span>
+          </p>
+          <p>
+            Target: <span className="link-target">{clickedLink.target.id}</span>
+          </p>
+          <p>
+            Value: <span className="link-value">{clickedLink.value}</span>
+          </p>
+          <h4>Related Texts:</h4>
+          <div className="related-texts-container">
+            {filteredData.map((entry, index) => (
+              <div key={index} className="related-text-item">
+                <div className="entry-header">
+                  <p className="entry-title">{entry.title}</p>
+                  <p className="entry-date">{entry.datePublished}</p>
+                </div>
+                <p className="entry-keyphrase">Keyphrase: {entry.keyphrase}</p>
+                {/* Display other relevant information */}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
