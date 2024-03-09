@@ -1,0 +1,18 @@
+.AppContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  font-family: Garamond, serif;
+}
+
+.AppContainer-header {
+  background-color: #ffffff;
+  color: #3c6382;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

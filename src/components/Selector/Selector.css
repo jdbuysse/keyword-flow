@@ -1,0 +1,35 @@
+.selector-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: Garamond, serif;
+  }
+  
+  .selectors-column {
+    background-color: #3c6382;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: #f8f8f8;
+  }
+  
+  .selector-wrapper {
+    margin-bottom: 20px;
+  }
+  
+  .selector-wrapper h3 {
+    margin-top: 0;
+    color: #9b59b6; /* Changed from orange */
+  }
+  
+  .selector-wrapper select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f8f8f8;
+    color: #3c6382;
+    font-family: Garamond, serif;
+  }
