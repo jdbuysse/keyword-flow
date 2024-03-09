@@ -2,7 +2,7 @@ const fs = require("fs");
 const natural = require("natural");
 
 // Input and output file paths
-// EDIT FILENAME to read in new dataset 
+// EDIT FILENAME to read in new dataset
 const inputFile = "./constellateDatasets/skate_full_metadata.jsonl";
 const outputFile = "../public/output.json";
 
@@ -13,20 +13,16 @@ const data = fs.readFileSync(inputFile, "utf8").split("\n");
 const extractedData = [];
 let allKeyphrases = [];
 
-// Process each line of the JSONL file
 data.forEach((line) => {
   if (line.trim() !== "") {
-    // Parse JSON from each line
     const entry = JSON.parse(line);
 
-    // Extract required fields
     const { id, datePublished, keyphrase, sourceCategory, tdmCategory, title } =
       entry;
 
     // Extract keyphrase from the array if it exists and join them into a single string
     const keyphraseString = Array.isArray(keyphrase) ? keyphrase.join(" ") : "";
 
-    // Push the extracted data to the array
     extractedData.push({
       id,
       datePublished,
@@ -36,7 +32,7 @@ data.forEach((line) => {
       title,
     });
 
-    // Collect all keyphrases into one array
+    // Collect all keyphrases from full dataset into one array
     allKeyphrases = allKeyphrases.concat(
       Array.isArray(keyphrase) ? keyphrase : []
     );
@@ -80,4 +76,7 @@ fs.writeFileSync(
   )
 );
 
-console.log("Extraction completed. Output written to", outputFile);
+console.log(
+  "Extraction complete! check the /public/ folder for your output",
+  outputFile
+);
