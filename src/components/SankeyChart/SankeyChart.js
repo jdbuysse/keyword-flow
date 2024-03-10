@@ -16,7 +16,7 @@ const formatSankeyChartData = (extractedData, selectedKeyphrases) => {
   extractedData.forEach((entry) => {
     const keyphrases = entry.keyphrase.split(" ");
 
-    // Check if "skaters" and "skateboard" coexist but "kickflip" does not
+    // Check if "source" and "target" coexist but "third" does not
     if (
       keyphrases.includes(source) &&
       keyphrases.includes(target) &&
@@ -25,7 +25,7 @@ const formatSankeyChartData = (extractedData, selectedKeyphrases) => {
       occurrences[`${source}_${target}`]++;
     }
 
-    // Check if "skaters" and "kickflip" coexist but "skateboard" does not
+    // Check if "target" and "third" coexist but "target" does not
     if (
       keyphrases.includes(source) &&
       keyphrases.includes(third) &&
@@ -156,7 +156,6 @@ const SankeyChart = ({ extractedData, selectedKeyphrases }) => {
                   <p className="entry-date">{entry.datePublished}</p>
                 </div>
                 <p className="entry-keyphrase">Keyphrase: {entry.keyphrase}</p>
-                {/* Display other relevant information */}
               </div>
             ))}
           </div>

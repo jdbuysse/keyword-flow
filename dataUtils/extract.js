@@ -3,13 +3,12 @@ const natural = require("natural");
 
 // Input and output file paths
 // EDIT FILENAME to read in new dataset
-const inputFile = "./constellateDatasets/machine_learning.jsonl";
+const inputFile = "./constellateDatasets/filename.jsonl";
 const outputFile = "../public/output.json";
 
 // Read JSONL by line
 const data = fs.readFileSync(inputFile, "utf8").split("\n");
 
-// ExtractedData trims to certain key fields
 const extractedData = [];
 let allKeyphrases = [];
 
@@ -20,7 +19,7 @@ data.forEach((line) => {
     const { id, datePublished, keyphrase, sourceCategory, tdmCategory, title } =
       entry;
 
-    // Extract keyphrase from the array if it exists and join them into a single string
+    // Extract keyphrase from the array if it exists and join them into a string
     const keyphraseString = Array.isArray(keyphrase) ? keyphrase.join(" ") : "";
 
     extractedData.push({
@@ -32,14 +31,13 @@ data.forEach((line) => {
       title,
     });
 
-    // Collect all keyphrases from full dataset into one array
+    // Collect all keyphrases from full dataset into one array for TFIDF calc
     allKeyphrases = allKeyphrases.concat(
       Array.isArray(keyphrase) ? keyphrase : []
     );
   }
 });
 
-// Join all keyphrases into one long string
 const allKeyphrasesString = allKeyphrases.join(" ");
 
 // Tokenize the keyphrases
@@ -62,7 +60,7 @@ const sortedKeyphrasesTFIDF = Object.entries(keyphrasesTFIDF)
   .map(([keyphrase, tfidfScore]) => ({ keyphrase, tfidfScore }))
   .sort((a, b) => b.tfidfScore - a.tfidfScore);
 
-// Write the extracted data, aggregated keyphrases, and sorted TF-IDF scores to a new JSON file
+// Write to output.json
 fs.writeFileSync(
   outputFile,
   JSON.stringify(

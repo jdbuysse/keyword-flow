@@ -9,9 +9,11 @@ In the project directory, run:
 `npm install`
 `npm start`
 
+The app will read from a default dataset saved in public/output.json
+
 ### Using your own data
 
-1. Create a constellate dataset and downloading 'Sample metadata, ngrams, full-text (JSONL)' or 'Metadata, ngrams, and full-text (JSONL)' (need to check that this works with the later when you look for better example data)
+1. Create a constellate dataset and download 'Sample metadata, ngrams, full-text (JSONL)'
 2. Unzip the downloaded dataset and drop it into /dataUtils/constellateDatasets
 3. In extract.js, rename `const inputFile` to match the name of the file to extract
 4. If you haven't already, run npm install
@@ -19,8 +21,10 @@ In the project directory, run:
 6. Restructured data will now appear in /public/, ready be used in the React application via mock query
 
 ## About the dataset extractor
-This will work with constellate datasets that include x fields
-then it will be saved in the public react folder so it can be fetched as if via query
+This will work with any constellate datasets that include `{ id, datePublished, keyphrase, sourceCategory, tdmCategory, title }`
 does tfidf yadda yadda.
 
 ## Images
+![image](ex1.PNG)
+![image](ex2.PNG)
+![image](ex3.PNG)

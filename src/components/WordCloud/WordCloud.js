@@ -1,6 +1,5 @@
 import React from "react";
 import Wordcloud from "react-wordcloud";
-import { debounce } from "../../utils";
 import "./WordCloud.css"; // Import the CSS file for styling
 
 const WordCloud = ({ allKeyphrases }) => {
@@ -40,16 +39,6 @@ const WordCloud = ({ allKeyphrases }) => {
           spiral: "archimedean",
           transitionDuration: 500,
           colors: ["#666666", "#999999", "#CCCCCC", "#DDDDDD"],
-        }}
-        callbacks={{
-          onWordClick: debounce(function (word) {
-            // Handle word click event
-            console.log("Clicked word:", word);
-          }, 250),
-          onWordMouseOver: debounce(function (word) {
-            // Handle word mouseover event
-            console.log("Hovered word:", word);
-          }, 250),
         }}
       />
     </div>
