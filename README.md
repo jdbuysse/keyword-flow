@@ -22,7 +22,6 @@ The app will read from a default dataset saved in public/output.json
 
 ## About the dataset extractor
 This will work with any constellate datasets that include `{ id, datePublished, keyphrase, sourceCategory, tdmCategory, title }`
-does tfidf yadda yadda.
 
 ## Images
 ![image](ex1.PNG)
